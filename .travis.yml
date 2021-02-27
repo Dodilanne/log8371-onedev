@@ -9,4 +9,4 @@ cache:
 
 script:
   - java --version
-  - ./maven/bin/mvn clean verify
+  - mvn clean verify
