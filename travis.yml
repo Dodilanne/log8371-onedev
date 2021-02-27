@@ -1,0 +1,12 @@
+language: java
+
+jdk: 
+  - oraclejdk15
+
+cache:
+  directories:
+  - $HOME/.m2
+
+script:
+  - java --version
+  - ./maven/bin/mvn clean verify
