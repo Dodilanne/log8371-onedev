@@ -7,6 +7,12 @@ cache:
   directories:
     - $home/.m2
 
-script:
-  - java -version
-  - mvn clean install
+stages:
+  - name: hello
+    if: branch = main
+    script:
+      - echo "Hello from main!"
+  - name: deploy
+    script:
+      - java -version
+      - mvn clean install
