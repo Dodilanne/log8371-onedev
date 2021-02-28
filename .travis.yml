@@ -1,18 +1,20 @@
+# Langage utilisé
 language: java
 
+# Version du Java Development Kit à utiliser
 jdk:
   - openjdk8
 
+# Spécifications du système d'exploitation
+os: linux
+dist: xenial
+
+# On spécifie une cache pour accélérer le processus du build
 cache:
   directories:
     - $home/.m2
 
-stages:
-  - name: hello
-    if: branch = main
-    script:
-      - echo "Hello from main!"
-  - name: deploy
-    script:
-      - java -version
-      - mvn clean install
+# Commandes à exécuter lors du déploiement
+script:
+  - java -version
+  - mvn clean install
