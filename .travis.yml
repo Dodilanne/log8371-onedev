@@ -3,6 +3,10 @@ language: java
 jdk:
   - openjdk8
 
+cache:
+  directories:
+    - $home/.m2
+
 script:
   - java -version
-  - mvn clean verify
+  - mvn clean install
