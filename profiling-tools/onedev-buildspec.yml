@@ -1,0 +1,25 @@
+version: 4
+jobs:
+- name: react ci
+  image: node:10.16-alpine
+  commands:
+  - echo "##onedev[SetBuildVersion '@scripts:builtin:node:determine-project-version@']"
+  - echo
+  - npm install typescript
+  - npm install
+  - export CI=TRUE
+  - npx react-scripts build
+  - npx react-scripts test
+  triggers:
+  - !TagCreateTrigger {}
+  retrieveSource: true
+  cloneCredential: !DefaultCredential {}
+  cpuRequirement: 250m
+  memoryRequirement: 128m
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  caches:
+  - key: npm-cache
+    path: /root/.npm
+  timeout: 3600
