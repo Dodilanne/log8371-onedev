@@ -1,5 +1,6 @@
 version: "3.2"
 services:
+  # Prometheus permet d'exposer les métriques recueillies par Cadvisor
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
@@ -11,6 +12,7 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
     depends_on:
       - cadvisor
+  # Cadvisor permet de faire le monitorage des conteneurs
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor
@@ -23,6 +25,7 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro
     depends_on:
       - server
+  # Le conteneur server représente l'installation de OneDev
   server:
     container_name: server
     volumes:
@@ -32,3 +35,10 @@ services:
       - "6610:6610"
       - "6611:6611"
     image: "1dev/server:4.2.4"
+    # Les lignes qui suivent permettent de limiter les ressources
+    # disponibles pour le conteneur de OneDev
+    deploy:
+      resources:
+        limits:
+          cpus: 0.50 # Fraction des CPUs qui sont réellement disponibles
+          memory: 512M # Mémoire disponible en mégabits
