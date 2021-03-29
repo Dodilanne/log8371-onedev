@@ -6,7 +6,7 @@ from shutil import copyfile
 
 # CONFIG
 apps = ['app1', 'app2'] # réplications de l'application d'introduction (1 build  ~= 5min)
-yml = './onedev-buildspec.yml'
+yml = '.onedev-buildspec.yml'
 clients = 10 # nombre de branches associées à chaque application
 
 
