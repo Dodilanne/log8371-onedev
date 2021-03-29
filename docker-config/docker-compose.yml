@@ -40,5 +40,5 @@ services:
     deploy:
       resources:
         limits:
-          cpus: 0.50 # Fraction des CPUs qui sont réellement disponibles
+          cpus: 1 # Nombre de CPUs disponibles
           memory: 512M # Mémoire disponible en mégabits
